@@ -1,2 +1,1 @@
-# moodle-sync-ldap
-moodle sync ldap 
+# Moodle Sync LDAP

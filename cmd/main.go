@@ -43,7 +43,7 @@ func main() {
 	res, _ := json.MarshalIndent(&mdata, "", "\t")
 	fmt.Println(string(res))
 
-	content, err := os.ReadFile(filepath.Join(filepath.Dir(rp), "moodle-sync-ldap-repository", "moodle-ldif.tmpl"))
+	content, err := os.ReadFile(filepath.Join(filepath.Dir(rp), "moodle-sync-ldap-repository", "moodle", "ldif.tmpl"))
 	if err != nil {
 		log.Fatalf("error read ldif file: %v\n", err)
 	}

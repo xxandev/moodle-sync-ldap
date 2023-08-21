@@ -1,0 +1,11 @@
+{{with index . 0}}{{range .Users}}dn: cn={{.Username}},%[1]s
+changetype: modify
+replace: uidNumber
+uidNumber: {{.UID}}
+
+dn: cn={{.Username}},%[1]s
+changetype: modify
+replace: gidNumber
+gidNumber: {{.UID}}
+{{end}}
+{{end}}

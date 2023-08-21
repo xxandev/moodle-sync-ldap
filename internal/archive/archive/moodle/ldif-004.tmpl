@@ -1,0 +1,27 @@
+{{range .}}{{if eq .ID 1}}{{range .Users}}dn: cn={{.Username}},%[1]s
+changetype: modify
+replace: uidNumber
+uidNumber: {{.UID}}
+
+dn: cn={{.Username}},%[1]s
+changetype: modify
+replace: gidNumber
+gidNumber: {{.UID}}
+
+{{end}}{{end}}dn: cn={{.ShortNameTranslit}},%[1]s
+description: {{.FullName}}
+objectClass: top
+objectClass: posixGroup
+cn: {{.ShortNameTranslit}}
+gidNumber: {{.UID}}
+
+dn: cn={{.ShortNameTranslit}},%[1]s
+changetype: modify
+delete: memberuid
+
+dn: cn={{.ShortNameTranslit}},%[1]s
+changetype: modify
+add: memberuid
+{{range .Users}}memberuid: {{.Username}}
+{{end}}
+{{end}}

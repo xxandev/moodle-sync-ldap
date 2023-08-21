@@ -24,6 +24,7 @@ type course struct {
 
 type user struct {
 	ID        int64  `json:"id,omitempty"`
+	UID       int64  `json:"uid,omitempty"`
 	Username  string `json:"username,omitempty"`
 	FirstName string `json:"firstname,omitempty"`
 	LastName  string `json:"lastname,omitempty"`
@@ -66,6 +67,9 @@ func (c *Config) GetData() (courses []course, err error) {
 		u.RawQuery = q.Encode()
 		if resp, err := get(u); err == nil {
 			json.Unmarshal(resp, &courses[n].Users)
+			for q := range courses[n].Users {
+				courses[n].Users[q].UID = 10000 + courses[n].Users[q].ID
+			}
 		}
 	}
 	return
